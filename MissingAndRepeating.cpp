@@ -3,26 +3,32 @@
 using namespace std;
 
 int main(){
-	int ar[10],n,rep,miss,num,temp;
+	int n;
 	cout<<"Enter number of elements:";
 	cin>>n;
-	cout<<"Enter array from 1 to n";
-	for(int i=0;i<n;i++){
+	
+	int ar[n];
+	int repeat,missing;
+	bool present[n+1]={false};
+	
+	cout<<"Enter array:";
+	for(int i=0;i<n;++i)
 		cin>>ar[i];
-	}
-	cout<<endl;
+		
 	for(int i=0;i<n;i++){
-		for(int j=i+1;j<n;j++){
-			if(ar[j]<ar[i]){
-			temp=ar[j];
-			ar[j]=ar[i];
-			ar[i]=temp;
-			}
+		if(present[ar[i]]==true)
+			repeat=ar[i];
+		present[ar[i]]=true;
+	}
+	
+	for(int i=1;i<n;++i){
+		if(present[i]==false){
+			missing=i;
+			break;
 		}
 	}
-	cout<<"Sorted array:";
-	for(int i=0;i<n;i++){
-		cout<<ar[i]<<" ";
-	}
+	cout<<"Missing number:"<<missing<<endl;
+	cout<<"Repeating number:"<<repeat;
+	
 	return 0;
 }
